@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manday | Effort calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#main" aria-label="Manday home">
+      <span class="brand-mark">M</span>
+      <span>manday<span class="brand-dot">.</span></span>
+    </a>
+    <div class="topbar-meta"><span class="status-dot"></span> Planning workspace</div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">Effort planning</p>
+      <h1>Turn working days<br><em>into a clear plan.</em></h1>
+      <p class="intro-copy">Select activities from the TaaS COE catalog, set quantities, and get an estimate built from the workbook's Mandays values.</p>
+    </section>
+
+    <section class="calculator-grid" aria-label="Manday calculator">
+      <form class="panel inputs-panel" id="calculator-form">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">TaaS COE catalog</p>
+            <h2>Build your estimate</h2>
+          </div>
+          <span class="step-count">01—03</span>
+        </div>
+
+        <div class="field service-field">
+          <span>Service</span>
+          <div class="service-tabs" id="service-tabs" role="tablist" aria-label="Services"></div>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Team members</span>
+            <div class="number-control">
+              <button type="button" class="stepper" data-action="decrease" aria-label="Decrease team members">−</button>
+              <input id="team-size" type="number" min="1" max="999" value="1" required>
+              <button type="button" class="stepper" data-action="increase" aria-label="Increase team members">+</button>
+            </div>
+          </label>
+        </div>
+
+        <label class="field search-field">
+          <span>Find an activity</span>
+          <input id="activity-search" type="search" placeholder="Search the catalog">
+        </label>
+        <div class="activity-list" id="activity-list" aria-label="Catalog activities"></div>
+        <div class="selected-summary"><span id="selected-count">0 activities selected</span><button type="button" id="clear-selection">Clear all</button></div>
+        <label class="field remarks-field" for="remarks">
+          <span>Remarks</span>
+          <textarea id="remarks" name="remarks" rows="3" placeholder="Add any notes about this estimate"></textarea>
+        </label>
+      </form>
+
+      <aside class="panel result-panel" aria-live="polite">
+        <div class="result-topline"><span class="section-kicker">Your estimate</span><span class="result-status">LIVE</span></div>
+        <div class="manday-total"><span id="manday-total">5.0</span><span class="unit">mandays</span></div>
+        <p class="result-caption" id="result-caption">Select activities to begin</p>
+
+        <div class="breakdown">
+          <div class="breakdown-item"><span>Catalog base</span><strong id="base-output">0.0</strong></div>
+          <div class="breakdown-item"><span>Activities</span><strong id="activity-output">0</strong></div>
+          <div class="breakdown-item"><span>Team members</span><strong id="team-output">1</strong></div>
+        </div>
+
+        <div class="service-breakdown">
+          <div class="service-breakdown-heading"><span class="formula-label">By service</span><span class="service-breakdown-note">mandays</span></div>
+          <div id="service-totals"><p class="service-empty">Select activities to see the service split.</p></div>
+        </div>
+
+        <div class="formula-box">
+          <span class="formula-label">Calculation</span>
+          <code id="formula">Mandays × 1 person</code>
+        </div>
+
+        <button type="button" class="reset-button" id="reset-button"><span>↺</span> Reset calculator</button>
+      </aside>
+    </section>
+
+  </main>
+  <footer><span>manday<span class="brand-dot">.</span></span><span>Built for better estimates</span></footer>
+  <script src="catalog-data.js"></script>
+  <script src="config-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
